@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.css'; // Add this import for custom styles
 
-function Header() {
+function Header({ onSearch }) {
+  const [search, setSearch] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (onSearch) onSearch(search);
+  };
+
   return (
     <>
       {/* Main Header/Navbar - full width */}
@@ -13,8 +20,15 @@ function Header() {
             </span>
             TechZone
           </a>
-          <form className="d-flex mx-auto" style={{ maxWidth: 400, width: '100%' }}>
-            <input className="form-control me-2" type="search" placeholder="Search for components..." aria-label="Search" />
+          <form className="d-flex mx-auto" style={{ maxWidth: 400, width: '100%' }} onSubmit={handleSubmit}>
+            <input
+              className="form-control me-2"
+              type="search"
+              placeholder="Search for components..."
+              aria-label="Search"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+            />
             <button className="btn btn-outline-light" type="submit">Search</button>
           </form>
           <button className="btn btn-light position-relative ms-2" type="button" aria-label="Shopping Cart">

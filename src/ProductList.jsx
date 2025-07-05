@@ -61,7 +61,7 @@ const categories = [
   { label: 'Misc.', value: 'Misc.' },
 ];
 
-function ProductList({ selectedCategory = 'All', onCategoryChange }) {
+function ProductList({ selectedCategory = 'All', onCategoryChange, searchText = '' }) {
   const [activeCategory, setActiveCategory] = useState(selectedCategory);
 
   const handleCategoryClick = (cat) => {
@@ -69,13 +69,16 @@ function ProductList({ selectedCategory = 'All', onCategoryChange }) {
     if (onCategoryChange) onCategoryChange(cat);
   };
 
-  const filteredProducts =
-    activeCategory === 'All'
-      ? products
-      : products.filter((p) =>
-          p.category === activeCategory ||
-          (activeCategory === "CPU's" && p.category === 'CPU')
-        );
+  const filteredProducts = products.filter((p) => {
+    const matchesCategory =
+      activeCategory === 'All' ||
+      p.category === activeCategory ||
+      (activeCategory === "CPU's" && p.category === 'CPU');
+    const matchesSearch =
+      !searchText ||
+      p.name.toLowerCase().includes(searchText.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <>
@@ -94,6 +97,14 @@ function ProductList({ selectedCategory = 'All', onCategoryChange }) {
           ))}
         </div>
       </div>
+      {/* Search Info */}
+      {searchText && (
+        <div className="container mt-3 mb-2">
+          <div className="alert alert-info py-2 mb-0">
+            Showing {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} for <strong>"{searchText}"</strong>
+          </div>
+        </div>
+      )}
       {/* Product Cards */}
       <div className="container py-4">
         <div className="row g-4">
