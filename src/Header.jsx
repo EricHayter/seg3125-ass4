@@ -1,4 +1,5 @@
 import React from 'react';
+import './Header.css'; // Add this import for custom styles
 
 function Header() {
   return (
@@ -6,12 +7,12 @@ function Header() {
       {/* Main Header/Navbar - full width */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top w-100" style={{ width: '100vw' }}>
         <div className="container-fluid">
-          <a className="navbar-brand fw-bold px-3 py-2 rounded-2" href="#" style={{
-            background: '#fff',
-            color: '#fff',
-            fontSize: '1.7rem',
-            letterSpacing: '1px',
-          }}>PC Component Picker</a>
+          <a className="navbar-brand tech-title fw-bold px-3 py-2 rounded-2 d-flex align-items-center gap-2" href="#">
+            <span role="img" aria-label="logo" style={{ fontSize: '2.2rem', lineHeight: 1 }}>
+              🖥️
+            </span>
+            TechZone
+          </a>
           <form className="d-flex mx-auto" style={{ maxWidth: 400, width: '100%' }}>
             <input className="form-control me-2" type="search" placeholder="Search for components..." aria-label="Search" />
             <button className="btn btn-outline-light" type="submit">Search</button>
@@ -25,14 +26,15 @@ function Header() {
         </div>
       </nav>
       {/* Category Bar - full width, under header */}
-      <div className="bg-light py-2 px-3 d-flex justify-content-center align-items-center w-100" style={{ fontSize: '1rem', fontWeight: 600, width: '100vw' }}>
+      <div className="bg-secondary bg-opacity-25 py-2 px-3 d-flex justify-content-center align-items-center w-100" style={{ fontSize: '1rem', fontWeight: 600, width: '100vw' }}>
         <div className="d-flex gap-4 flex-wrap">
-          <a href="#ram" className="text-primary text-decoration-none category-link px-2 py-1 fw-bold">RAM</a>
-          <a href="#gpu" className="text-info text-decoration-none category-link px-2 py-1 fw-bold">GPU's</a>
-          <a href="#cpu" className="text-danger text-decoration-none category-link px-2 py-1 fw-bold">CPU's</a>
-          <a href="#psu" className="text-success text-decoration-none category-link px-2 py-1 fw-bold">PSU</a>
-          <a href="#cases" className="text-secondary text-decoration-none category-link px-2 py-1 fw-bold">Cases</a>
-          <a href="#misc" className="text-dark text-decoration-none category-link px-2 py-1 fw-bold">Misc.</a>
+          <a href="#all" className="category-link text-dark bg-transparent text-decoration-none px-2 py-1 fw-bold rounded-2">All</a>
+          <a href="#ram" className="category-link text-dark bg-transparent text-decoration-none px-2 py-1 fw-bold rounded-2">RAM</a>
+          <a href="#graphics-cards" className="category-link text-dark bg-transparent text-decoration-none px-2 py-1 fw-bold rounded-2">Graphics Cards</a>
+          <a href="#cpu" className="category-link text-dark bg-transparent text-decoration-none px-2 py-1 fw-bold rounded-2">CPU's</a>
+          <a href="#power-supplies" className="category-link text-dark bg-transparent text-decoration-none px-2 py-1 fw-bold rounded-2">Power Supplies</a>
+          <a href="#cases" className="category-link text-dark bg-transparent text-decoration-none px-2 py-1 fw-bold rounded-2">Cases</a>
+          <a href="#misc" className="category-link text-dark bg-transparent text-decoration-none px-2 py-1 fw-bold rounded-2">Misc.</a>
         </div>
       </div>
     </>
