@@ -25,18 +25,6 @@ function Header() {
           </button>
         </div>
       </nav>
-      {/* Category Bar - full width, under header */}
-      <div className="bg-secondary bg-opacity-25 py-2 px-3 d-flex justify-content-center align-items-center w-100" style={{ fontSize: '1rem', fontWeight: 600, width: '100vw' }}>
-        <div className="d-flex gap-4 flex-wrap">
-          <a href="#all" className="category-link text-dark bg-transparent text-decoration-none px-2 py-1 fw-bold rounded-2">All</a>
-          <a href="#ram" className="category-link text-dark bg-transparent text-decoration-none px-2 py-1 fw-bold rounded-2">RAM</a>
-          <a href="#graphics-cards" className="category-link text-dark bg-transparent text-decoration-none px-2 py-1 fw-bold rounded-2">Graphics Cards</a>
-          <a href="#cpu" className="category-link text-dark bg-transparent text-decoration-none px-2 py-1 fw-bold rounded-2">CPU's</a>
-          <a href="#power-supplies" className="category-link text-dark bg-transparent text-decoration-none px-2 py-1 fw-bold rounded-2">Power Supplies</a>
-          <a href="#cases" className="category-link text-dark bg-transparent text-decoration-none px-2 py-1 fw-bold rounded-2">Cases</a>
-          <a href="#misc" className="category-link text-dark bg-transparent text-decoration-none px-2 py-1 fw-bold rounded-2">Misc.</a>
-        </div>
-      </div>
     </>
   );
 }

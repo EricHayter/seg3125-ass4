@@ -1,9 +1,9 @@
 .category-link {
   transition: background 0.2s, color 0.2s;
 }
-.category-link:hover, .category-link:focus {
-  background: #e2e6ea;
-  color: #0d6efd !important;
+.category-link:hover, .category-link:focus, .category-link.active {
+  background: #0d6efd !important;
+  color: #fff !important;
   text-decoration: none;
 }
 
