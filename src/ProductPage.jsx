@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { products } from './ProductList';
 
-function ProductPage() {
+function ProductPage({ addToCart }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const product = products.find(p => p.id === parseInt(id));
@@ -29,8 +29,8 @@ function ProductPage() {
               <p className="card-text mb-1"><strong>Category:</strong> {product.category}</p>
               {/* Add more specs here if available */}
               <div className="d-flex flex-column gap-3 mt-4">
-                <button className="btn btn-primary btn-lg fw-bold" style={{width:'100%', fontSize:'1.25rem', letterSpacing:'0.5px', boxShadow:'0 2px 8px rgba(33,150,243,0.15)'}} onClick={() => alert('Added to cart!')}>Add to Cart</button>
-                <button className="btn btn-success btn-lg fw-bold" style={{width:'100%', fontSize:'1.25rem', letterSpacing:'0.5px', boxShadow:'0 2px 8px rgba(76,175,80,0.15)'}} onClick={() => alert('Proceed to purchase!')}>Purchase</button>
+                <button className="btn btn-primary btn-lg fw-bold" style={{width:'100%', fontSize:'1.25rem', letterSpacing:'0.5px', boxShadow:'0 2px 8px rgba(33,150,243,0.15)'}} onClick={() => addToCart(product)}>Add to Cart</button>
+                <button className="btn btn-success btn-lg fw-bold" style={{width:'100%', fontSize:'1.25rem', letterSpacing:'0.5px', boxShadow:'0 2px 8px rgba(76,175,80,0.15)'}} onClick={() => { addToCart(product); navigate('/cart'); }}>Purchase</button>
               </div>
             </div>
           </div>
