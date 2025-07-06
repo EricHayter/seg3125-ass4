@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import './Header.css'; // Add this import for custom styles
+import './Header.css';
+import { useNavigate } from 'react-router-dom';
 
 function Header({ onSearch }) {
   const [search, setSearch] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,12 +16,12 @@ function Header({ onSearch }) {
       {/* Main Header/Navbar - full width */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top w-100" style={{ width: '100vw' }}>
         <div className="container-fluid">
-          <a className="navbar-brand tech-title fw-bold px-3 py-2 rounded-2 d-flex align-items-center gap-2" href="#">
+          <button className="navbar-brand tech-title fw-bold px-3 py-2 rounded-2 d-flex align-items-center gap-2 btn btn-link p-0 border-0" style={{background:'none'}} onClick={() => navigate('/')}> 
             <span role="img" aria-label="logo" style={{ fontSize: '2.2rem', lineHeight: 1 }}>
               🖥️
             </span>
             TechZone
-          </a>
+          </button>
           <form className="d-flex mx-auto" style={{ maxWidth: 400, width: '100%' }} onSubmit={handleSubmit}>
             <input
               className="form-control me-2"

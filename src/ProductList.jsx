@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const products = [
+export const products = [
   {
     id: 1,
     name: 'Corsair Vengeance 16GB RAM',
@@ -63,6 +64,7 @@ const categories = [
 
 function ProductList({ selectedCategory = 'All', onCategoryChange, searchText = '' }) {
   const [activeCategory, setActiveCategory] = useState(selectedCategory);
+  const navigate = useNavigate();
 
   const handleCategoryClick = (cat) => {
     setActiveCategory(cat);
@@ -110,7 +112,7 @@ function ProductList({ selectedCategory = 'All', onCategoryChange, searchText = 
         <div className="row g-4">
           {filteredProducts.map(product => (
             <div className="col-md-4 col-lg-3" key={product.id}>
-              <div className="card h-100 shadow-sm position-relative">
+              <div className="card h-100 shadow-sm position-relative" style={{cursor:'pointer'}} onClick={() => navigate(`/product/${product.id}`)}>
                 {product.sale && (
                   <span className="badge bg-danger position-absolute top-0 end-0 m-2" style={{zIndex:2}}>{product.sale}</span>
                 )}
@@ -118,7 +120,7 @@ function ProductList({ selectedCategory = 'All', onCategoryChange, searchText = 
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title">{product.name}</h5>
                   <p className="card-text fw-bold mb-2">${product.price.toFixed(2)}</p>
-                  <button className="btn btn-primary mt-auto">Add to Cart</button>
+                  <button className="btn btn-primary mt-auto" onClick={e => {e.stopPropagation(); alert('Added to cart!')}}>Add to Cart</button>
                 </div>
               </div>
             </div>
