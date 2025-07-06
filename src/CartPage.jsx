@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CartPage({ cart }) {
+function CartPage({ cart, navigate }) {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
@@ -32,7 +32,7 @@ function CartPage({ cart }) {
           </table>
           <div className="d-flex justify-content-between align-items-center mb-4">
             <h4>Total: <span className="text-success">${total.toFixed(2)}</span></h4>
-            <button className="btn btn-success btn-lg fw-bold">Proceed to Checkout</button>
+            <button className="btn btn-success btn-lg fw-bold" onClick={() => navigate('/checkout')}>Proceed to Checkout</button>
           </div>
         </>
       )}

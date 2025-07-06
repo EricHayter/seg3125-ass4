@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import ProductList from './ProductList';
 import ProductPage from './ProductPage';
 import CartPage from './CartPage';
+import CheckoutPage from './CheckoutPage';
 import Header from './Header';
 import './App.css';
 
@@ -11,6 +12,7 @@ function App() {
   const [cart, setCart] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMsg, setPopupMsg] = useState('');
+  const navigate = useNavigate();
 
   const addToCart = (product) => {
     setCart(prevCart => {
@@ -27,6 +29,10 @@ function App() {
         return [...prevCart, { ...product, quantity: 1 }];
       }
     });
+  };
+
+  const handlePlaceOrder = () => {
+    setCart([]);
   };
 
   // Hide popup after 2 seconds
@@ -50,7 +56,8 @@ function App() {
       <Routes>
         <Route path="/" element={<ProductList searchText={searchText} addToCart={addToCart} />} />
         <Route path="/product/:id" element={<ProductPage addToCart={addToCart} />} />
-        <Route path="/cart" element={<CartPage cart={cart} />} />
+        <Route path="/cart" element={<CartPage cart={cart} navigate={navigate} />} />
+        <Route path="/checkout" element={<CheckoutPage cart={cart} onPlaceOrder={handlePlaceOrder} />} />
       </Routes>
     </>
   );

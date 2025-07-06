@@ -124,6 +124,7 @@ function ProductList({ selectedCategory = 'All', onCategoryChange, searchText = 
 	const [priceRange, setPriceRange] = useState([0, 0]);
 	const [priceFilter, setPriceFilter] = useState([null, null]);
 	const [page, setPage] = useState(1);
+	const [showSaleOnly, setShowSaleOnly] = useState(false);
 	const pageSize = 12;
 	const navigate = useNavigate();
 
@@ -168,7 +169,9 @@ function ProductList({ selectedCategory = 'All', onCategoryChange, searchText = 
 		});
 		// Price filter
 		const matchesPrice = (!priceFilter[0] || p.price >= priceFilter[0]) && (!priceFilter[1] || p.price <= priceFilter[1]);
-		return matchesCategory && matchesSearch && matchesSpecs && matchesPrice;
+		// Sale filter
+		const matchesSale = !showSaleOnly || !!p.sale;
+		return matchesCategory && matchesSearch && matchesSpecs && matchesPrice && matchesSale;
 	});
 
 	const totalPages = Math.ceil(filteredProducts.length / pageSize);
@@ -178,7 +181,12 @@ function ProductList({ selectedCategory = 'All', onCategoryChange, searchText = 
 		<div className="d-flex">
 			{/* Sidebar Filter */}
 			<div className="bg-light border-end p-3" style={{ minWidth: 220, maxWidth: 260 }}>
-				<h5 className="mb-3">Filter</h5>
+				<h5 className="mb-3">Filters</h5>
+				{/* Sale Filter */}
+				<div className="form-check mb-3">
+					<input className="form-check-input" type="checkbox" id="saleOnly" checked={showSaleOnly} onChange={e => setShowSaleOnly(e.target.checked)} />
+					<label className="form-check-label" htmlFor="saleOnly">On Sale</label>
+				</div>
 				{/* Price Filter */}
 				<div className="mb-3">
 					<label className="form-label">Price Range</label>
@@ -254,6 +262,38 @@ function ProductList({ selectedCategory = 'All', onCategoryChange, searchText = 
 								{cat.label}
 							</button>
 						))}
+					</div>
+				</div>
+				{/* Call to Action: Show All On Sale - now a big, animated, colorful banner */}
+				<div className="container mt-4 mb-3 d-flex justify-content-center">
+					<div style={{
+						background: 'linear-gradient(90deg, #ff9800 0%, #ffd600 100%)',
+						borderRadius: '1.5rem',
+						boxShadow: '0 4px 24px 0 rgba(255,152,0,0.15)',
+						padding: '1.5rem 2.5rem',
+						display: 'flex',
+						alignItems: 'center',
+						gap: '1.5rem',
+						width: '100%',
+						maxWidth: 900,
+						position: 'relative',
+						animation: 'pulse-sale-banner 1.5s infinite alternate',
+					}}
+					>
+						<span style={{ fontSize: '2.2rem', fontWeight: 900, color: '#fff', textShadow: '0 2px 8px #ff9800' }}>🔥 Hot Deals!</span>
+						<span style={{ fontSize: '1.3rem', fontWeight: 600, color: '#fff', letterSpacing: '1px' }}>See all items currently <span style={{color:'#d32f2f', fontWeight:900}}>ON SALE</span> and save big!</span>
+						<button
+							className="btn btn-danger btn-lg fw-bold px-4 py-2 shadow-lg"
+							onClick={() => { setShowSaleOnly(true); setPage(1); }}
+							style={{ fontSize: '1.3rem', borderRadius: '2rem', marginLeft: 'auto', boxShadow: '0 2px 12px #d32f2f55' }}
+						>
+							Show All On Sale
+						</button>
+						<style>{`
+						@keyframes pulse-sale-banner {
+							0% { box-shadow: 0 4px 24px 0 rgba(255,152,0,0.15); }
+							100% { box-shadow: 0 8px 32px 0 rgba(255,152,0,0.35); }
+						}`}</style>
 					</div>
 				</div>
 				{/* Search Info */}
