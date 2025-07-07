@@ -20,7 +20,7 @@ function Header({ onSearch }) {
             <span role="img" aria-label="logo" style={{ fontSize: '2.2rem', lineHeight: 1 }}>
               🖥️
             </span>
-            TechZone
+            Precision Parts
           </button>
           <div className="w-100 d-flex justify-content-center">
             <form className="d-flex" style={{ maxWidth: 400, width: '100%' }} onSubmit={handleSubmit}>
