@@ -7,7 +7,11 @@ function CartPage({ cart, navigate }) {
     <div className="container py-5">
       <h1 className="mb-4">Shopping Cart</h1>
       {cart.length === 0 ? (
-        <div className="alert alert-info">Your cart is empty.</div>
+        <div className="alert alert-info p-4 text-center" style={{fontSize:'1.15rem', maxWidth: 500, margin: '0 auto'}}>
+          <h4 className="mb-3">Your cart is empty!</h4>
+          <p className="mb-3">You haven't added any parts yet. Head back to the main page to browse and add your favorite PC components!</p>
+          <button className="btn btn-primary btn-lg" onClick={() => navigate('/')}>Browse Parts</button>
+        </div>
       ) : (
         <>
           <table className="table align-middle mb-4">
