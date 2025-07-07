@@ -21,8 +21,12 @@ function CheckoutPage({ cart, onPlaceOrder }) {
 
   if (cart.length === 0 && !submitted) {
     return (
-      <div className="container py-5">
-        <div className="alert alert-info">Your cart is empty. <button className="btn btn-link p-0" onClick={() => navigate('/')}>Go shopping</button></div>
+      <div className="container py-5 text-center">
+        <div className="alert alert-info p-4" style={{fontSize:'1.2rem', maxWidth: 500, margin: '0 auto'}}>
+          <h4 className="mb-3">Your cart is empty!</h4>
+          <p className="mb-3">Looks like you haven't added any parts yet. Browse our wide selection of PC components and start building your dream machine!</p>
+          <button className="btn btn-primary btn-lg" onClick={() => navigate('/')}>Browse Parts</button>
+        </div>
       </div>
     );
   }

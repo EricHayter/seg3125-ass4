@@ -281,13 +281,15 @@ function ProductList({ selectedCategory = 'All', onCategoryChange, searchText = 
 					}}
 					>
 						<span style={{ fontSize: '2.2rem', fontWeight: 900, color: '#fff', textShadow: '0 2px 8px #ff9800' }}>🔥 Hot Deals!</span>
-						<span style={{ fontSize: '1.3rem', fontWeight: 600, color: '#fff', letterSpacing: '1px' }}>See all items currently <span style={{color:'#d32f2f', fontWeight:900}}>ON SALE</span> and save big!</span>
+						<span style={{ fontSize: '1.3rem', fontWeight: 600, color: '#fff', letterSpacing: '1px' }}>
+						  Discover amazing savings on top PC parts! Click below to see everything that's currently <span style={{color:'#d32f2f', fontWeight:900}}>ON SALE</span> and treat yourself (or your build) to a great deal.
+						</span>
 						<button
 							className="btn btn-danger btn-lg fw-bold px-4 py-2 shadow-lg"
 							onClick={() => { setShowSaleOnly(true); setPage(1); }}
 							style={{ fontSize: '1.3rem', borderRadius: '2rem', marginLeft: 'auto', boxShadow: '0 2px 12px #d32f2f55' }}
 						>
-							Show All On Sale
+							Show Me the Deals!
 						</button>
 						<style>{`
 						@keyframes pulse-sale-banner {
